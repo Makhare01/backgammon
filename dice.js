@@ -11,14 +11,26 @@ export class Dice {
     dicesContainer.style.height = height / 4 + "px";
 
     this.dicesContainer = dicesContainer;
-    this.#drawDices()
+    this.#drawDices();
+  }
+
+  #getFirst() {
+    if (localStorage.getItem("first") === "") return "";
+
+    return JSON.parse(localStorage.getItem("first"));
+  }
+
+  #getSecond() {
+    if (localStorage.getItem("second") === "") return "";
+
+    return JSON.parse(localStorage.getItem("second"));
   }
 
   addRollButton() {
-    const first = JSON.parse(localStorage.getItem('first'))
-    const second = JSON.parse(localStorage.getItem('second'))
+    const first = this.#getFirst();
+    const second = this.#getSecond();
 
-    if(!first && !second) {
+    if (!first && !second) {
       const rollButton = document.createElement("button");
       rollButton.classList.add("roll-button");
       rollButton.setAttribute("id", "roll-button");
@@ -32,46 +44,47 @@ export class Dice {
 
       this.dicesContainer.appendChild(rollButton);
     }
-    
   }
 
   #roll() {
     const first = Math.floor(Math.random() * 6) + 1;
     const second = Math.floor(Math.random() * 6) + 1;
+    localStorage.setItem("possibleMovies", null);
 
-    if(first == second) {
+    if (first == second) {
       localStorage.setItem("first", JSON.stringify(Array(2).fill(first)));
       localStorage.setItem("second", JSON.stringify(Array(2).fill(second)));
-    }
-    else {
+    } else {
       localStorage.setItem("first", first);
       localStorage.setItem("second", second);
     }
 
-    
-
     localStorage.setItem("status", "PLAYING");
     this.status = "PLAYING";
 
-    this.#drawDices()
+    this.#drawDices();
   }
 
   #drawDices() {
-    const first = JSON.parse(localStorage.getItem('first'))
-    const second = JSON.parse(localStorage.getItem('second'))
+    const first = this.#getFirst();
+    const second = this.#getSecond();
 
-    if(first && second) {
+    if (first && second) {
       const dices = document.createElement("div");
       const firstDice = document.createElement("img");
-      firstDice.src = `./images/dice/${Array.isArray(first) ? first[0] : first}.png`;
+      firstDice.src = `./images/dice/${
+        Array.isArray(first) ? first[0] : first
+      }.png`;
       const secondDice = document.createElement("img");
-      secondDice.src = `./images/dice/${Array.isArray(second) ? second[0] : second}.png`;
+      secondDice.src = `./images/dice/${
+        Array.isArray(second) ? second[0] : second
+      }.png`;
 
       dices.classList.add("dice-container");
       dices.setAttribute("id", "dice-container");
       dices.appendChild(firstDice);
       dices.appendChild(secondDice);
-      this.dicesContainer.appendChild(dices); 
+      this.dicesContainer.appendChild(dices);
     }
   }
 

@@ -1,21 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./images/favicon.png" type="image/png">
-    <link rel="stylesheet" href="style.css">
-    <title>Backgamon</title>
-</head>
-<body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+    <title>ნარდი</title>
+  </head>
+  <body>
     <canvas id="canvas"></canvas>
-    <div id="app"></div>
-    <div id="dices-container"></div>
-    <audio id="roll-sound" src="http://www.gnubg.org/win32/wavs/roll.wav"></audio>
 
+    <div class="players-container">
+      <div class="player">
+        <div class="player-avatar">
+          <img
+            class="player-avatar"
+            src="./images/avatars/avatar-girl.png"
+            alt="avatar-girl"
+          />
+          <p class="player-name">PLAYER 1</p>
+
+          <div class="player-type">
+            <div class="white-player"></div>
+            <p>WHITE</p>
+          </div>
+
+          <div class="player-rocks">
+            <div class="killed-rocks">
+              <img src="./images/killed-rocks.png" alt="killed rocks" />
+              <div></div>
+            </div>
+            <div class="picked-rocks">
+              <img src="./images/picked-up.png" alt="killed rocks" />
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="app"></div>
+
+      <div class="player">
+        <div class="player-avatar">
+          <img
+            class="player-avatar"
+            src="./images/avatars/avatar-boy.png"
+            alt="avatar-girl"
+          />
+          <p class="player-name">PLAYER 2</p>
+
+          <div class="player-type">
+            <div class="black-player"></div>
+            <p>BLACK</p>
+          </div>
+
+          <div class="player-rocks">
+            <div class="killed-rocks">
+              <img src="./images/killed-rocks.png" alt="killed rocks" />
+              <div></div>
+            </div>
+            <div class="picked-rocks">
+              <img src="./images/picked-up.png" alt="killed rocks" />
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="dices-container"></div>
+
+    <audio
+      id="roll-sound"
+      src="http://www.gnubg.org/win32/wavs/roll.wav"
+    ></audio>
+    <audio id="roll-pick-up-sound" src="./sounds/pick_up.mp3"></audio>
 
     <script type="module" src="main.js"></script>
-</body>
+  </body>
 </html>
